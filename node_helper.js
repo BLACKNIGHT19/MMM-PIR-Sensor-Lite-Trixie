@@ -48,17 +48,25 @@ module.exports = NodeHelper.create({
 
 		if(!this.config.debugMode) {
 			switch(this.config.commandType) {
-				case 'vcgencmd':
-					exec("/usr/bin/vcgencmd display_power 1", null);
-					break;
+            case 'vcgencmd':
+                exec("/usr/bin/vcgencmd display_power 1", null);
+                break;
 
-				case 'xrandr':
-					exec("xrandr --output " + this.config.hdmiPort + " --rotate " + this.config.rotation + " --auto", null);
-					break;
+            case 'wlopm':
+                exec("wlopm --on '*'", null);
+                break;
 
-				case 'xset':
-					exec("xset dpms force on", null);
-					break;
+            case 'wlr-randr':
+                exec("wlr-randr --output " + this.config.hdmiPort + " --on", null);
+                break;
+
+            case 'xrandr':
+                exec("xrandr --output " + this.config.hdmiPort + " --rotate " + this.config.rotation + " --auto", null);
+                break;
+
+            case 'xset':
+                exec("xset dpms force on", null);
+                break;
 			}
 		}
 	},
@@ -69,17 +77,25 @@ module.exports = NodeHelper.create({
 
 		if(!this.config.debugMode) {
 			switch(this.config.commandType) {
-				case 'vcgencmd':
-					exec("/usr/bin/vcgencmd display_power 0", null);
-					break;
+            case 'vcgencmd':
+                exec("/usr/bin/vcgencmd display_power 0", null);
+                break;
 
-				case 'xrandr':
-					exec("xrandr --output " + this.config.hdmiPort + " --off", null);
-					break;
+            case 'wlopm':
+                exec("wlopm --off '*'", null);
+                break;
 
-				case 'xset':
-					exec("xset dpms force off", null);
-					break;
+            case 'wlr-randr':
+                exec("wlr-randr --output " + this.config.hdmiPort + " --off", null);
+                break;
+
+            case 'xrandr':
+                exec("xrandr --output " + this.config.hdmiPort + " --off", null);
+                break;
+
+            case 'xset':
+                exec("xset dpms force off", null);
+                break;
 			}
 		}
 	},
